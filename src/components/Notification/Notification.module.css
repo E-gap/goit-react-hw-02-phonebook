@@ -1,0 +1,6 @@
+.notificationMessage {
+  text-decoration: underline;
+  padding-left: 40px;
+  font-size: 20px;
+  color: red;
+}

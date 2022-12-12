@@ -1,0 +1,15 @@
+.statList {
+  list-style: none;
+  padding-left: 40px;
+}
+
+.statItem {
+  color: green;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.statisticsTitle {
+  font-weight: 700;
+  padding-left: 40px;
+}

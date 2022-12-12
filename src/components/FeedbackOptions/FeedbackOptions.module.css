@@ -1,0 +1,17 @@
+.title {
+  padding-left: 40px;
+}
+
+.buttonsList {
+  list-style: none;
+  display: flex;
+}
+
+.button {
+  font-size: 20px;
+  background-color: aqua;
+  margin-right: 10px;
+  border-radius: 20px;
+  padding: 10px;
+  cursor: pointer;
+}
