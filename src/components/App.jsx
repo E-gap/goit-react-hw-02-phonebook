@@ -16,6 +16,19 @@ export class App extends React.Component {
     });
   };
 
+  deleteContact = event => {
+    const deleteContactId = event.currentTarget.getAttribute('contact');
+    console.log(deleteContactId);
+    const newContacts = this.state.contacts.filter(
+      contact => contact.id !== deleteContactId
+    );
+    console.log(newContacts);
+
+    this.setState({
+      contacts: [...newContacts],
+    });
+  };
+
   formHandlerSubmit = data => {
     const contact = {
       id: uuidv4(),
@@ -53,6 +66,7 @@ export class App extends React.Component {
         <ContactList
           filter={this.state.filter}
           contacts={this.state.contacts}
+          deleteContact={this.deleteContact}
         />
       </div>
     );
