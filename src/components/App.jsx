@@ -1,38 +1,55 @@
 import React from 'react';
-import FeedbackOptions from './FeedbackOptions/FeedbackOptions.jsx';
-import Statistics from './Statistics/Statistics.jsx';
-import Section from './Section/Section.jsx';
-import Notification from './Notification/Notification.jsx';
+import { v4 as uuidv4 } from 'uuid';
+//import FeedbackOptions from './FeedbackOptions/FeedbackOptions.jsx';
+//import Statistics from './Statistics/Statistics.jsx';
+//import Section from './Section/Section.jsx';
+//import Notification from './Notification/Notification.jsx';
 
 export class App extends React.Component {
   state = {
-    Good: 0,
-    Neutral: 0,
-    Bad: 0,
+    contacts: [],
+    name: '',
+    number: '',
+    filter: '',
   };
 
-  handleFeedback = event => {
-    this.setState(prevState => {
-      return {
-        [event.target.name]: prevState[event.target.name] + 1,
-      };
+  reset = () => {
+    this.setState({
+      name: '',
+      number: '',
     });
   };
 
-  countTotal = () => {
-    const arrayValuesState = Object.values(this.state);
-    const total = arrayValuesState.reduce((acc, el) => {
-      return acc + el;
-    }, 0);
-    return total;
+  handlerChangeName = event => {
+    this.setState({
+      name: event.target.value,
+    });
   };
 
-  countPercentage = () => {
-    const arrayValuesState = Object.values(this.state);
-    const total = arrayValuesState.reduce((acc, el) => {
-      return acc + el;
-    }, 0);
-    return Math.round((this.state.Good * 100) / total);
+  handlerChangeNumber = event => {
+    this.setState({
+      number: event.target.value,
+    });
+  };
+
+  handlerChangeFilter = event => {
+    this.setState({
+      filter: event.target.value,
+    });
+  };
+
+  handlerSubmit = event => {
+    event.preventDefault();
+    const contact = {
+      id: uuidv4(),
+      name: this.state.name,
+      number: this.state.number,
+    };
+    this.setState(prevState => {
+      return { contacts: [contact, ...prevState.contacts] };
+    });
+
+    this.reset();
   };
 
   render() {
@@ -47,25 +64,54 @@ export class App extends React.Component {
           color: '#010101',
         }}
       >
-        <Section title="Please leave feedback">
-          <FeedbackOptions
-            options={this.state}
-            onLeaveFeedback={this.handleFeedback}
-          />
-        </Section>
-        <Section title="Statistics">
-          {this.state.Good || this.state.Neutral || this.state.Bad ? (
-            <Statistics
-              good={this.state.Good}
-              neutral={this.state.Neutral}
-              bad={this.state.Bad}
-              total={this.countTotal()}
-              positivePercentage={this.countPercentage()}
+        <form onSubmit={this.handlerSubmit}>
+          <label>
+            Name
+            <input
+              type="text"
+              name="name"
+              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+              required
+              value={this.state.name}
+              onChange={this.handlerChangeName}
             />
-          ) : (
-            <Notification message="Начинаем второе задание" />
-          )}
-        </Section>
+          </label>
+
+          <label>
+            Number
+            <input
+              type="tel"
+              name="number"
+              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+              required
+              value={this.state.number}
+              onChange={this.handlerChangeNumber}
+            />
+          </label>
+
+          <button type="Submit">Add contact</button>
+        </form>
+        <p>Contacts</p>
+        <label>
+          Find contacts by name
+          <input
+            type="text"
+            name="filter"
+            value={this.state.filter}
+            onChange={this.handlerChangeFilter}
+          ></input>
+        </label>
+        <ul>
+          {this.state.contacts.map(contact => {
+            return (
+              <li key={uuidv4()}>
+                {contact.name}: {contact.number}
+              </li>
+            );
+          })}
+        </ul>
       </div>
     );
   }
