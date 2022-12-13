@@ -43,10 +43,14 @@ class ContactForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handlerSubmit}>
-        <label>
+      <form
+        className={`${css.contactForm} ${css.block}`}
+        onSubmit={this.handlerSubmit}
+      >
+        <label className={css.block}>
           Name
           <input
+            className={css.block}
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -57,9 +61,10 @@ class ContactForm extends React.Component {
           />
         </label>
 
-        <label>
+        <label className={css.block}>
           Number
           <input
+            className={css.block}
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"

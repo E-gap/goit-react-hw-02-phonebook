@@ -1,15 +1,17 @@
-.statList {
-  list-style: none;
-  padding-left: 40px;
+.filter {
+  padding-left: 20px;
 }
 
-.statItem {
-  color: green;
+.block {
+  display: block;
+}
+
+.block label {
   font-size: 30px;
-  font-weight: 400;
 }
 
-.statisticsTitle {
-  font-weight: 700;
-  padding-left: 40px;
+.block input {
+  border: 2px solid grey;
+  font-size: 30px;
+  margin-bottom: 20px;
 }

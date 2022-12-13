@@ -1,6 +1,11 @@
-.notificationMessage {
-  text-decoration: underline;
-  padding-left: 40px;
-  font-size: 20px;
-  color: red;
+.contactList {
+  font-size: 40px;
+  width: 500px;
+}
+
+.listItem button {
+  font-size: 25px;
+  border-radius: 10px;
+  padding: 5px;
+  margin-left: 30px;
 }

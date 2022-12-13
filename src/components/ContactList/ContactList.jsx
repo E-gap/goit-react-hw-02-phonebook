@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 
 const ContactList = ({ filter, contacts, deleteContact }) => {
   return (
-    <ul>
+    <ul className={css.contactList}>
       {contacts
-        .filter(contact => contact.name.includes(filter))
+        .filter(contact =>
+          contact.name.toLowerCase().includes(filter.toLowerCase())
+        )
         .map(contact => {
           return (
-            <li key={contact.id}>
+            <li key={contact.id} className={css.listItem}>
               {contact.name}: {contact.number}
               <button
                 type="button"
