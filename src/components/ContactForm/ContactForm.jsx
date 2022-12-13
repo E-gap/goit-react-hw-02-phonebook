@@ -30,8 +30,16 @@ class ContactForm extends React.Component {
 
   handlerSubmit = event => {
     event.preventDefault();
-    this.props.onSubmit(this.state);
-    this.reset();
+
+    const array = this.props.contacts.filter(
+      contact => contact.name === this.state.name
+    );
+    if (array.length > 0) {
+      alert(`${this.state.name} is already in contacts`);
+    } else {
+      this.props.onSubmit(this.state);
+      this.reset();
+    }
   };
 
   render() {
@@ -70,6 +78,7 @@ class ContactForm extends React.Component {
 
 ContactForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  contacts: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ContactForm;

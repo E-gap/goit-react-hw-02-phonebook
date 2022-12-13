@@ -40,7 +40,10 @@ export class App extends React.Component {
         }}
       >
         <h1>Phonebook</h1>
-        <ContactForm onSubmit={this.formHandlerSubmit} />
+        <ContactForm
+          onSubmit={this.formHandlerSubmit}
+          contacts={this.state.contacts}
+        />
 
         <h2>Contacts</h2>
         <Filter
