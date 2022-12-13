@@ -104,13 +104,15 @@ export class App extends React.Component {
           ></input>
         </label>
         <ul>
-          {this.state.contacts.map(contact => {
-            return (
-              <li key={uuidv4()}>
-                {contact.name}: {contact.number}
-              </li>
-            );
-          })}
+          {this.state.contacts
+            .filter(contact => contact.name.includes(this.state.filter))
+            .map(contact => {
+              return (
+                <li key={uuidv4()}>
+                  {contact.name}: {contact.number}
+                </li>
+              );
+            })}
         </ul>
       </div>
     );
