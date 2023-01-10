@@ -13,7 +13,7 @@ const ContactListItem = ({ id, name, number, deleteContact }) => {
   );
 };
 
-ContactList.propTypes = {
+ContactListItem.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
