@@ -67,7 +67,7 @@ export class App extends React.Component {
           onChange={this.handlerChangeFilter}
         />
         <ContactList
-          filter={this.state.filter}
+          //filter={this.state.filter}
           filteredContacts={this.filterContacts()}
           deleteContact={this.deleteContact}
         />
