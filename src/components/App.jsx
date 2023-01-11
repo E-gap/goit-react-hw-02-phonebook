@@ -24,12 +24,12 @@ export class App extends React.Component {
   deleteContact = event => {
     const deleteContactId = event.currentTarget.getAttribute('contact');
 
-    const newContacts = this.state.contacts.filter(
-      contact => contact.id !== deleteContactId
-    );
-
-    this.setState({
-      contacts: [...newContacts],
+    this.setState(prevState => {
+      return {
+        contacts: prevState.contacts.filter(
+          contact => contact.name !== deleteContactId
+        ),
+      };
     });
   };
 
@@ -66,11 +66,21 @@ export class App extends React.Component {
           filter={this.state.filter}
           onChange={this.handlerChangeFilter}
         />
-        <ContactList
-          //filter={this.state.filter}
-          filteredContacts={this.filterContacts()}
-          deleteContact={this.deleteContact}
-        />
+        {this.state.contacts.length > 0 ? (
+          <ContactList
+            filteredContacts={this.filterContacts()}
+            deleteContact={this.deleteContact}
+          />
+        ) : (
+          <p
+            style={{
+              color: 'green',
+              fontSize: '40px',
+            }}
+          >
+            This phonebook is empty
+          </p>
+        )}
       </div>
     );
   }

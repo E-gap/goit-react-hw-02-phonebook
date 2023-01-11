@@ -4,7 +4,7 @@ import css from './ContactList.module.css';
 import PropTypes from 'prop-types';
 
 const ContactList = ({ filteredContacts, deleteContact }) => {
-  return (
+  return filteredContacts.length > 0 ? (
     <ul className={css.contactList}>
       {filteredContacts.map(contact => (
         <ContactListItem
@@ -16,6 +16,8 @@ const ContactList = ({ filteredContacts, deleteContact }) => {
         />
       ))}
     </ul>
+  ) : (
+    <p className={css.warning}>There are not such contacts in this phonebook</p>
   );
 };
 
@@ -26,7 +28,6 @@ ContactList.propTypes = {
       number: PropTypes.string.isRequired,
     })
   ).isRequired,
-  //filter: PropTypes.string.isRequired,
   deleteContact: PropTypes.func.isRequired,
 };
 
