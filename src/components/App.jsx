@@ -38,7 +38,7 @@ export class App extends React.Component {
       contact => contact.name.toLowerCase() === data.name.toLowerCase()
     );
     if (array.length > 0) {
-      alert(`${this.state.name} is already in contacts`);
+      alert(`${data.name} is already in contacts`);
     } else {
       this.setState(prevState => {
         return { contacts: [data, ...prevState.contacts] };
